@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Psiquiatria Prática App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="nav">
+        <span class="brand">Psiquiatria Prática App</span>
+        <button id="entrarBtn" class="btn ghost">Entrar</button>
+      </nav>
+      <section class="hero-content">
+        <h1>Psiquiatria no Consultório</h1>
+        <p>
+          Uma aplicação única com landing da mentoria, dashboard do aluno, fórum,
+          gamificação e verificação de certificado.
+        </p>
+        <div class="hero-actions">
+          <button id="ctaMentoria" class="btn primary">Conhecer a mentoria</button>
+          <button id="ctaDashboard" class="btn secondary">Abrir dashboard</button>
+        </div>
+      </section>
+      <section class="stats">
+        <article><strong>25</strong><span>Encontros ao vivo</span></article>
+        <article><strong>5</strong><span>Módulos temáticos</span></article>
+        <article><strong>~6</strong><span>Meses de mentoria</span></article>
+        <article><strong>10</strong><span>Vagas por turma</span></article>
+      </section>
+    </header>
+
+    <main>
+      <section id="mentoria" class="card-grid">
+        <article class="card">
+          <h2>Estrutura da Mentoria</h2>
+          <p>Conteúdo prático dividido em 5 módulos.</p>
+          <details open>
+            <summary>Módulo 1 — Fundação do Consultório</summary>
+            <ul>
+              <li>Antes de abrir: decisões críticas</li>
+              <li>Estrutura jurídica e tributária</li>
+              <li>Precificação e posicionamento</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Módulo 2 — Captação e Retenção</summary>
+            <ul>
+              <li>Jornada do paciente</li>
+              <li>Processos para reduzir faltas</li>
+              <li>Comunicação ética e eficiente</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Módulo 3 — Excelência Clínica</summary>
+            <ul>
+              <li>Protocolos baseados em evidência</li>
+              <li>Padronização de anamnese</li>
+              <li>Follow-up orientado por indicadores</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="card">
+          <h2>Para quem é</h2>
+          <ul>
+            <li>Psiquiatras no início de carreira</li>
+            <li>Psiquiatras que querem escalar consultório</li>
+            <li>Médicos de saúde mental</li>
+          </ul>
+          <h3>Inclui</h3>
+          <ul>
+            <li>Suporte via WhatsApp</li>
+            <li>Aulas ao vivo + gravações</li>
+            <li>Quizzes e avaliações por módulo</li>
+            <li>Certificado digital verificável</li>
+          </ul>
+        </article>
+
+        <article class="card highlight">
+          <h2>Oferta de Lançamento</h2>
+          <p class="price"><s>R$ 12.000</s> <strong>R$ 9.000</strong></p>
+          <p>Apenas 10 vagas para a turma atual.</p>
+          <button class="btn primary">Garantir vaga</button>
+        </article>
+      </section>
+
+      <section id="dashboard" class="dashboard hidden">
+        <div class="dashboard-header">
+          <h2>Dashboard do Aluno</h2>
+          <span id="progressLabel">Progresso: 0%</span>
+        </div>
+        <div class="progress-wrap"><div id="progressBar" class="progress-bar"></div></div>
+
+        <div class="dashboard-grid">
+          <article class="card">
+            <h3>Trilha de módulos</h3>
+            <ul id="modulosList" class="checklist"></ul>
+          </article>
+
+          <article class="card">
+            <h3>Gamificação</h3>
+            <p>Pontos: <strong id="points">0</strong></p>
+            <p>Badges:</p>
+            <ul id="badgesList"></ul>
+            <button id="quizBtn" class="btn secondary">Fazer quiz do módulo</button>
+          </article>
+
+          <article class="card">
+            <h3>Certificado</h3>
+            <p>Liberação ao completar todos os módulos.</p>
+            <button id="gerarCertificadoBtn" class="btn primary" disabled>
+              Gerar certificado
+            </button>
+            <p id="certificadoCode"></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="forum card">
+        <h2>Fórum da Comunidade</h2>
+        <form id="forumForm" class="forum-form">
+          <input id="postAutor" placeholder="Seu nome" required />
+          <input id="postTitulo" placeholder="Título da dúvida" required />
+          <textarea id="postConteudo" placeholder="Descreva seu caso ou dúvida" required></textarea>
+          <button class="btn secondary" type="submit">Publicar</button>
+        </form>
+        <ul id="forumPosts" class="posts"></ul>
+      </section>
+
+      <section class="card certificate-verify">
+        <h2>Verificar Certificado</h2>
+        <div class="verify-row">
+          <input id="verifyInput" placeholder="Ex: PPC-2026-AB12" />
+          <button id="verifyBtn" class="btn ghost">Verificar</button>
+        </div>
+        <p id="verifyResult"></p>
+      </section>
+    </main>
+
+    <dialog id="quizDialog">
+      <form method="dialog" class="quiz-content" id="quizForm">
+        <h3>Quiz: Fundação do Consultório</h3>
+        <p>1) O primeiro passo para abertura do consultório é:</p>
+        <label><input type="radio" name="q1" value="0" required /> Comprar equipamentos</label>
+        <label><input type="radio" name="q1" value="1" /> Definir modelo de atendimento</label>
+
+        <p>2) Indicador de eficiência importante:</p>
+        <label><input type="radio" name="q2" value="1" required /> Taxa de faltas</label>
+        <label><input type="radio" name="q2" value="0" /> Cor da logomarca</label>
+
+        <menu>
+          <button value="cancel" class="btn ghost">Cancelar</button>
+          <button id="submitQuiz" value="default" class="btn primary">Enviar respostas</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
