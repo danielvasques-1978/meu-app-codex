@@ -1,0 +1,29 @@
+services:
+  obs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: obs-multistream
+    restart: unless-stopped
+    environment:
+      - DISPLAY_NUM=1
+      - VNC_PORT=5900
+      - NOVNC_PORT=6080
+      - RESOLUTION=1280x800x24
+      - TZ=America/Sao_Paulo
+    ports:
+      - "6080:6080"   # noVNC (acesso via browser)
+      - "5900:5900"   # VNC direto
+    volumes:
+      - obs-config:/root/.config/obs-studio
+    # Necessário para acesso a dispositivos de captura (câmera, áudio)
+    devices:
+      - /dev/dri:/dev/dri
+    # Permite acesso a dispositivos de vídeo (ex: webcam)
+    group_add:
+      - video
+    shm_size: "256m"
+
+volumes:
+  obs-config:
+    driver: local
